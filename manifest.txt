@@ -1,0 +1,20 @@
+src/main/java/br/com/devvinnas/crud_lab_user/
+├── config/           # Configurações do Spring (Security, Swagger, etc)
+├── controller/       # Controllers REST
+├── domain/          # Entidades JPA
+├── dto/             # Objetos de Transferência de Dados
+├── exception/       # Exceções personalizadas e handler
+├── mapper/          # Mapeadores entre entidades e DTOs
+├── repository/      # Repositórios JPA
+├── security/        # Configurações de segurança
+└── service/         # Camada de serviço
+
+src/main/resources/
+├── application.properties  # Configurações da aplicação
+└── db/
+    └── migration/         # Scripts Flyway (se necessário)
+
+src/test/java/br/com/devvinnas/crud_lab_user/
+├── controller/           # Testes dos controllers
+├── repository/          # Testes dos repositórios
+└── service/             # Testes dos serviços
