@@ -1,11 +1,11 @@
 package br.com.devvinnas.crud_lab_user.dto;
 
 import jakarta.validation.constraints.*;
+import br.com.devvinnas.crud_lab_user.validation.Cpf;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
 
 @Data
@@ -28,6 +28,9 @@ public class UpdateUserDTO {
 
     @Pattern(regexp = "\\d{10,11}", message = "Telefone deve ter 10 ou 11 dígitos")
     private String phoneNumber;
+
+    @Cpf(message = "CPF inválido")
+    private String cpf;
 
     private Boolean active;
 }

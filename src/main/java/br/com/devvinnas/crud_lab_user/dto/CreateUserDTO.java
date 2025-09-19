@@ -1,6 +1,7 @@
 package br.com.devvinnas.crud_lab_user.dto;
 
 import jakarta.validation.constraints.*;
+import br.com.devvinnas.crud_lab_user.validation.Cpf;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,8 +23,8 @@ public class CreateUserDTO {
     @Email(message = "Email deve ser válido")
     private String email;
 
-    @NotBlank(message = "CPF é obrigatório")
-    @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos")
+    @NotBlank(message = "O CPF é obrigatório")
+    @Cpf(message = "CPF inválido")
     private String cpf;
 
     @NotBlank(message = "Senha é obrigatória")
