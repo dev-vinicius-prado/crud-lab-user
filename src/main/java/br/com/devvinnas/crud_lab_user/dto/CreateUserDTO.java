@@ -1,6 +1,7 @@
 package br.com.devvinnas.crud_lab_user.dto;
 
 import jakarta.validation.constraints.*;
+import br.com.devvinnas.crud_lab_user.domain.Role;
 import br.com.devvinnas.crud_lab_user.validation.Cpf;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,4 +38,7 @@ public class CreateUserDTO {
 
     @Pattern(regexp = "\\d{10,11}", message = "Telefone deve ter 10 ou 11 dígitos")
     private String phoneNumber;
+
+    @NotNull(message = "Role é obrigatória")
+    private Role role;
 }

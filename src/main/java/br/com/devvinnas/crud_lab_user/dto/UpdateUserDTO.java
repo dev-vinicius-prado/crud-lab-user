@@ -29,7 +29,7 @@ public class UpdateUserDTO {
     @Pattern(regexp = "\\d{10,11}", message = "Telefone deve ter 10 ou 11 dígitos")
     private String phoneNumber;
 
-    @Cpf(message = "CPF inválido")
+    @Cpf
     private String cpf;
 
     private Boolean active;

@@ -9,6 +9,11 @@ import br.com.devvinnas.crud_lab_user.exception.UserNotFoundException;
 import br.com.devvinnas.crud_lab_user.mapper.UserMapper;
 import br.com.devvinnas.crud_lab_user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -43,6 +48,14 @@ public class UserService {
     public Page<UserResponseDTO> getAllUsers(Pageable pageable) {
         return userRepository.findAll(pageable)
                 .map(userMapper::toResponseDTO);
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserResponseDTO> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(userMapper::toResponseDTO)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
