@@ -9,16 +9,14 @@ import br.com.devvinnas.crud_lab_user.exception.UserNotFoundException;
 import br.com.devvinnas.crud_lab_user.mapper.UserMapper;
 import br.com.devvinnas.crud_lab_user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +37,7 @@ public class UserService {
 
         User user = userMapper.toEntity(createUserDTO);
         user.setPassword(passwordEncoder.encode(createUserDTO.getPassword()));
-        
+
         User savedUser = userRepository.save(user);
         return userMapper.toResponseDTO(savedUser);
     }
@@ -70,9 +68,9 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
 
-        if (updateUserDTO.getEmail() != null && 
-            !updateUserDTO.getEmail().equals(user.getEmail()) && 
-            userRepository.existsByEmail(updateUserDTO.getEmail())) {
+        if (updateUserDTO.getEmail() != null &&
+                !updateUserDTO.getEmail().equals(user.getEmail()) &&
+                userRepository.existsByEmail(updateUserDTO.getEmail())) {
             throw new UserAlreadyExistsException("Email já cadastrado");
         }
 
@@ -98,7 +96,7 @@ public class UserService {
     public UserResponseDTO toggleUserStatus(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
-        
+
         user.setActive(!user.isActive());
         User updatedUser = userRepository.save(user);
         return userMapper.toResponseDTO(updatedUser);
