@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -19,6 +19,6 @@ public class RegisterRequest {
     private String password;
     private String cpf;
     private String phoneNumber;
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
     private Role role;
 }
